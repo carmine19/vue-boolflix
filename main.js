@@ -3,7 +3,7 @@ var app = new Vue ({
     data: {
         cerca: '',
         films: [],
-        lingua: ['it','fr','de','ja','en','es']
+        lingua: ['it','br','ca','de','en','es','fr','ja']
     },
     methods: {
         cerco_film() {
@@ -32,8 +32,12 @@ var app = new Vue ({
                 }
             })
             .then((risposta) => {
-                this.films = risposta.data.results
-                console.log(this.films);
+                for (let i = 0; i <risposta.data.results.length && i < 9 ; i++) {
+                    let ele_corrente = risposta.data.results[i];
+
+                    this.films.push(ele_corrente)
+                }
+
             });
 
     }
