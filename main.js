@@ -3,7 +3,7 @@ var app = new Vue ({
     data: {
         cerca: '',
         films: [],
-        lingua: ['it','br','ca','de','en','es','fr','ja']
+        lingua: ['it','br','ca','de','en','es','fr','hi','ja','ko','pt','ru','tr','zh']
     },
     methods: {
         cerco_film() {
@@ -17,6 +17,22 @@ var app = new Vue ({
             .then((risposta) => {
                 this.films = risposta.data.results
                 console.log(this.films);
+            });
+
+            //serie tv
+            axios.get('https://api.themoviedb.org/3/search/tv', {
+                params: {
+                    api_key: '0d032082a99de17739cf29501eb868ad',
+                    query: app.cerca,
+                    language: 'it'
+                }
+            })
+            .then((risposta) => {
+                for (let i = 0; i < risposta.data.result ; i++) {
+                    let ele_corrente = risposta.data.results[i];
+                    console.log(ele_corrente)
+                    this.films.push(ele_corrente)
+                }
             });
 
             this.cerca = '';

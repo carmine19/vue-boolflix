@@ -51,7 +51,7 @@
                                             <p>Lingua: {{film.original_language}}</p>
                                         </div>
                                         <div class="box-vote">
-                                            <p>Voto: {{film.vote_average}}</p>
+                                            <img v-if="lingua.includes(film.original_language)" :src="'img/' + film.original_language+'.png'" alt="">
                                              <div class="stars">
                                                 <i :class="film.vote_average > 1? 'fas' : 'far'" class="fa-star"></i>
                                                 <i :class="film.vote_average > 3? 'fas' : 'far'" class="fa-star"></i>
