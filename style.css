@@ -8,12 +8,25 @@
     outline: none;
 }
 
+ul, li {
+    list-style-type: none;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 14px;
+}
+
 .fas {
     color: darkgoldenrod;
 }
 
 .container {
     max-width: 1170px;
+    margin: 0 auto;
 }
 
 body{
@@ -23,15 +36,42 @@ body{
 
 header .container-menu {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     color: white;
-    padding: 10px;
+    padding: 10px 50px;
     background: #1D2D3C;
+}
+
+header .container-menu .menu-left {
+    display: flex;
+    align-items: center;
+}
+
+header .container-menu .menu-left .box-menu {
+    margin-left: 20px;
+}
+
+header .container-menu .menu-left .box-menu ul{
+    display: flex;
+    margin: 0 auto;
+}
+
+header .container-menu .menu-left .box-menu ul li{
+    margin-right: 15px;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
 }
 
 header .container-menu .menu-left .box-logo img {
     width: 100px;
+}
+
+header .container-menu .menu-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header .container-menu .menu-right .box-search .right-input {
@@ -44,6 +84,28 @@ header .container-menu .menu-right .box-search .right-input {
 header .container-menu .menu-right .box-search i {
     cursor: pointer;
     color: white;
+}
+
+header .container-menu .menu-right .box-profile i {
+    cursor: pointer;
+    color: white;
+    font-size: 25px;
+}
+
+header .container-menu .menu-right .box-profile {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .container-menu .menu-right .box-img-profile {
+    margin-left: 10px;
+}
+
+header .container-menu .menu-right .box-img-profile img {
+    width: 40px;
+    cursor: pointer;
 }
 
 main #card .box-card {
@@ -64,14 +126,11 @@ main #card .box-card .box-img {
     margin-bottom: 20px;
 }
 
-main #card .box-card .box-img .box-information h2{
-    font-size: 30px;
+main #card .box-card .box-information {
+    padding: 10px;
 }
 
-main #card .box-card .box-vote img{
+main #card .box-card .box-language img{
     width: 30px;
 }
-
-
-
 

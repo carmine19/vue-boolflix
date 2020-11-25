@@ -3,6 +3,8 @@ var app = new Vue ({
     data: {
         cerca: '',
         films: [],
+        serie: [],
+        tutti_i_contenuti: [],
         lingua: ['it','br','ca','de','en','es','fr','hi','ja','ko','pt','ru','tr','zh'],
         grandezza_img:'w342'
     },
@@ -17,9 +19,8 @@ var app = new Vue ({
                         language: 'it'
                     }
                 })
-                    .then((risposta) => {
-                        this.films = risposta.data.results
-                        console.log(this.films);
+                    .then((film) => {
+                        this.films = film.data.results
                     });
 
                 //serie tv
@@ -30,12 +31,9 @@ var app = new Vue ({
                         language: 'it'
                     }
                 })
-                    .then((risposta) => {
-                        for (let i = 0; i < risposta.data.result; i++) {
-                            let ele_corrente = risposta.data.results[i];
-                            console.log(ele_corrente)
-                            this.films.push(ele_corrente)
-                        }
+                    .then((serie) => {
+                        this.serie = serie.data.results;
+                        this.tutti_i_contenuti = [...this.films,...this.serie];
                     });
 
                 this.cerca = '';
@@ -55,7 +53,7 @@ var app = new Vue ({
                 for (let i = 0; i <risposta.data.results.length && i < 9 ; i++) {
                     let ele_corrente = risposta.data.results[i];
 
-                    this.films.push(ele_corrente)
+                    this.tutti_i_contenuti.push(ele_corrente)
                 }
 
             });

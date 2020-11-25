@@ -21,11 +21,28 @@
                         <div class="box-logo">
                             <img src="img/logo.png" alt="">
                         </div>
+                        <div class="box-menu">
+                            <ul>
+                                <li>Home</li>
+                                <li>Serie tv</li>
+                                <li>Film</li>
+                                <li>Nuovi e popolari</li>
+                                <li>La mia lista</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="menu-right">
                         <div class="box-search">
                             <input v-model="cerca" @keyup.enter="cerco_film()"  type="text" placeholder="Cerca..." class="right-input">
                             <i @click="cerco_film()" class="fas fa-search"></i>
+                        </div>
+                        <div class="box-profile">
+                            <div class="box-notify">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="box-img-profile">
+                                <img src="img/user1.png" alt="user">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -35,13 +52,16 @@
                 <section id="card">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-12" v-for="film in films">
-                                <div class="box-card">
-                                    <div class="box-img">
+                            <div class="col-lg-4 col-md-12" v-for="film in tutti_i_contenuti">
+                                <div class="box-card flip-card-container">
+                                    <div class="box-img flip-card-front">
                                         <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/' + grandezza_img + film.poster_path" :alt="film.title">
                                         <img v-else src="img/no-cover.png" alt="">
                                     </div>
-                                    <div class="box-information">
+                                    <div class="box-information flip-card-back">
+                                        <div class="box-controll">
+                                            <h2 v-if="films.length === 0">Nessuna corrispondenza trovata</h2>
+                                        </div>
                                         <div class="box-title">
                                             <h2>{{film.title}}</h2>
                                         </div>
@@ -49,17 +69,18 @@
                                             <p>{{film.original_title}}</p>
                                         </div>
                                         <div class="box-language">
-                                            <p>Lingua: {{film.original_language}}</p>
+                                            <img v-if="lingua.includes(film.original_language)" :src="'img/' + film.original_language+'.png'" alt="">
+                                            <p v-else>Lingua: {{film.original_language}}</p>
                                         </div>
                                         <div class="box-vote">
-                                            <img v-if="lingua.includes(film.original_language)" :src="'img/' + film.original_language+'.png'" alt="">
-                                             <div class="stars">
+                                             <div class="stars" v-if="film.vote_average != 0">
                                                 <i :class="film.vote_average > 1? 'fas' : 'far'" class="fa-star"></i>
                                                 <i :class="film.vote_average > 3? 'fas' : 'far'" class="fa-star"></i>
                                                 <i :class="film.vote_average > 5? 'fas' : 'far'" class="fa-star"></i>
                                                 <i :class="film.vote_average > 7? 'fas' : 'far'" class="fa-star"></i>
                                                 <i :class="film.vote_average > 9? 'fas' : 'far'" class="fa-star"></i>
                                             </div>
+                                            <p v-else>Non ci sono voti</p>
                                         </div>
                                     </div>
                                 </div>
