@@ -112,6 +112,12 @@ header .container-menu .menu-right .box-img-profile img {
     cursor: pointer;
 }
 
+main #card {
+    position: relative;
+    background: #000;
+
+}
+
 main #card .box-card {
     margin-top: 30px;
     cursor: pointer;
@@ -141,6 +147,7 @@ main #card .box-card .box-information {
     padding: 10px;
     position: absolute;
     border-radius: 6px;
+    overflow-y: scroll;
 }
 
 main #card .box-card .box-language img{
@@ -148,7 +155,7 @@ main #card .box-card .box-language img{
 }
 
 main #hero .jumbotron {
-    background: url("img/hero2.png");
+    /*background: url("img/hero2.png");*/
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -238,7 +245,23 @@ main #card .card:hover .back {
     transform: rotateY(0deg);
 }
 
-.mtt{
-    margin-top: 300px !important;
+video#bgvid {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	background: url(img/hero2.png) no-repeat;
+	background-size: cover;
+	z-index: 0;
 }
+
+video {
+    display: block;
+}
+
+
 
