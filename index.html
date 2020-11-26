@@ -13,10 +13,10 @@
 
 
 
-        <div id="app">
+        <div id="app" v-if="load == true">
 
             <header>
-                <div class="container-menu">
+                <div class="container-menu" id="nav">
                     <div class="menu-left">
                         <div class="box-logo">
                             <img src="img/logo.png" alt="">
@@ -76,11 +76,13 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="title">
-                                    <h2>Genere Horror</h2>
+                                    <h2 v-if="ricerca">Ricerca in corso..</h2>
+                                    <h2 v-else-if="ricerca && tutti_i_contenuti.length == true">Risultati ricerca per: "{{ cerca }}"</h2>
+                                    <h2 v-else-if="ricerca">Nessun risultato trovato per la ricerca "{{ cerca }}"</h2>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-12" v-for="(film, i) in tutti_i_contenuti">
-                                <div class="box-card card" :class="film[indice_ele] > 6 ? 'mtt' : null">
+                            <div class="col-lg-2 col-md-12" v-for="film in tutti_i_contenuti">
+                                <div class="box-card card">
                                     <div class="box-img front">
                                         <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/' + grandezza_img + film.poster_path" :alt="film.title">
                                         <img v-else src="img/no-cover.png" alt="">
@@ -109,6 +111,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </section>
