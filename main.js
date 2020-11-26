@@ -6,9 +6,15 @@ var app = new Vue ({
         serie: [],
         tutti_i_contenuti: [],
         lingua: ['it','br','ca','de','en','es','fr','hi','ja','ko','pt','ru','tr','zh'],
-        grandezza_img:'w342'
+        grandezza_img:'w342',
+        indice_ele: 0,
     },
     methods: {
+
+        prendo_indice(indice) {
+            this.indice_ele = indice
+        },
+
         cerco_film() {
 
             if (this.cerca.trim()) {
@@ -38,10 +44,9 @@ var app = new Vue ({
 
                 this.cerca = '';
             }
-        }
-    },
-    mounted() {
+        },
 
+        film_base() {
             axios.get('https://api.themoviedb.org/3/search/movie', {
                 params: {
                     api_key: '0d032082a99de17739cf29501eb868ad',
@@ -50,13 +55,27 @@ var app = new Vue ({
                 }
             })
             .then((risposta) => {
-                for (let i = 0; i <risposta.data.results.length && i < 9 ; i++) {
+                for (let i = 0; i <risposta.data.results.length && i < 7 ; i++) {
                     let ele_corrente = risposta.data.results[i];
 
                     this.tutti_i_contenuti.push(ele_corrente)
                 }
 
             });
+        },
+
+        tronco_stringa(str, num) {
+          if(str.length > num) {
+            return str.slice(0, num) + "...";
+          } else {
+            return str;
+          }
+        }
+    },
+    mounted() {
+        this.film_base()
+        this.tronco_stringa(str, num)
+
 
     }
 

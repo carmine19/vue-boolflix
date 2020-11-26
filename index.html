@@ -49,38 +49,63 @@
             </header>
 
             <main>
+
+                <section id="hero">
+                    <div class="jumbotron jumbotron-fluid">
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-lg-4">
+                                  <div class="box-info">
+                                      <img src="img/hero1.webp" alt="">
+                                      <h1>Guarda subito la stagione1</h1>
+                                      <p class="lead">È nato come un gioco, ma più scrivono, più si innamorano. Due persone perfette sulla carta possono legare nella realtà?</p>
+                                  </div>
+                                  <div class="box-button">
+                                      <div class="btn btn-success btn-riproduci"><i class="fas fa-play"></i> Riproduci</div>
+                                      <div class="btn btn-danger btn-info"><i class="fas fa-info-circle"></i> Altre info</div>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                    </div>
+                </section>
+
                 <section id="card">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-12" v-for="film in tutti_i_contenuti">
-                                <div class="box-card flip-card-container">
-                                    <div class="box-img flip-card-front">
+                            <div class="col-lg-12">
+                                <div class="title">
+                                    <h2>Genere Horror</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-12" v-for="(film, i) in tutti_i_contenuti">
+                                <div class="box-card card" :class="film[indice_ele] > 6 ? 'mtt' : null">
+                                    <div class="box-img front">
                                         <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/' + grandezza_img + film.poster_path" :alt="film.title">
                                         <img v-else src="img/no-cover.png" alt="">
                                     </div>
-                                    <div class="box-information flip-card-back">
-                                        <div class="box-controll">
-                                            <h2 v-if="films.length === 0">Nessuna corrispondenza trovata</h2>
-                                        </div>
+                                    <div class="box-information back">
+
                                         <div class="box-title">
-                                            <h2>{{film.title}}</h2>
+                                            <h2>{{film.title ? film.title : film.name}}</h2>
                                         </div>
                                         <div class="box-original-title">
-                                            <p>{{film.original_title}}</p>
+                                            <p>{{film.original_title ? film.original_title : film.original_name}}</p>
                                         </div>
                                         <div class="box-language">
                                             <img v-if="lingua.includes(film.original_language)" :src="'img/' + film.original_language+'.png'" alt="">
                                             <p v-else>Lingua: {{film.original_language}}</p>
                                         </div>
                                         <div class="box-vote">
-                                             <div class="stars" v-if="film.vote_average != 0">
-                                                <i :class="film.vote_average > 1? 'fas' : 'far'" class="fa-star"></i>
-                                                <i :class="film.vote_average > 3? 'fas' : 'far'" class="fa-star"></i>
-                                                <i :class="film.vote_average > 5? 'fas' : 'far'" class="fa-star"></i>
-                                                <i :class="film.vote_average > 7? 'fas' : 'far'" class="fa-star"></i>
-                                                <i :class="film.vote_average > 9? 'fas' : 'far'" class="fa-star"></i>
+                                             <div class="stars" v-if="Math.ceil(film.vote_average / 2 != 0)">
+                                                 <i v-for="i in Math.ceil(film.vote_average / 2 )" class="fas fa-star"></i>
+                                                 <i v-for="i in ( 5 - Math.ceil(film.vote_average / 2 ))" class="far fa-star"></i>
                                             </div>
                                             <p v-else>Non ci sono voti</p>
+                                        </div>
+                                        <div class="box-overview">
+                                            <p>{{ tronco_stringa(film.overview, 40) }}</p>
                                         </div>
                                     </div>
                                 </div>
