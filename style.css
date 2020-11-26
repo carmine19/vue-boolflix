@@ -245,7 +245,7 @@ main #card .card:hover .back {
     transform: rotateY(0deg);
 }
 
-video#bgvid {
+video.bgvid {
 	position: fixed;
 	right: 0;
 	bottom: 0;

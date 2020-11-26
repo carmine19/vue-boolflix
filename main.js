@@ -74,14 +74,23 @@ var app = new Vue ({
           }
         },
 
+        autoplay() {
+            var vid = document.getElementById("myVideo");
+            if(vid.autoplay === true) {
+                vid.autoplay = false
+                vid.load();
+            }else if(vid.autoplay === false) {
+                vid.autoplay = true
+                vid.load();
+            }
+
+        }
 
     },
     mounted() {
         this.load = true
         this.film_base()
         this.tronco_stringa(str, num)
-
-
     },
 
 });

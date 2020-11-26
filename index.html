@@ -16,10 +16,8 @@
 
         <div id="app" v-if="load == true">
 
-            <video autoplay loop muted poster="loop-hd.jpg" id="bgvid">
-                <!-- MP4 must be first for iPad! -->
-                <source src="video/DaL.mp4" type="video/mp4" /><!-- Safari / iOS video    -->
-
+            <video autoplay loop muted  id="myVideo" class="bgvid">
+                <source src="video/DaL.mp4" type="video/mp4"/>
             </video>
 
             <header>
@@ -68,7 +66,7 @@
                                       <p class="lead">È nato come un gioco, ma più scrivono, più si innamorano. Due persone perfette sulla carta possono legare nella realtà?</p>
                                   </div>
                                   <div class="box-button">
-                                      <div class="btn btn-success btn-riproduci"><i class="fas fa-play"></i> Riproduci</div>
+                                      <div class="btn btn-success btn-riproduci" @click="autoplay()"><i class="fas fa-play"></i> {{autoplay ? 'stop' : 'riproduci'}} </div>
                                       <div class="btn btn-danger btn-info"><i class="fas fa-info-circle"></i> Altre info</div>
                                   </div>
                               </div>
