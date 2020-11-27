@@ -86,6 +86,16 @@ var app = new Vue ({
             }
         },
 
+        audio() {
+            var vid = document.getElementById("myVideo");
+            if(vid.muted === true) {
+                vid.muted = false
+
+            }else if(vid.muted === false) {
+                vid.muted = true
+            }
+        },
+
         isMobile() {
             if( screen.width <= 766 ) {
                     return true;
@@ -104,6 +114,7 @@ var app = new Vue ({
         this.film_base()
         this.tronco_stringa(str, num)
         this.isMobile()
+        this.audio
     },
 
     created () {
