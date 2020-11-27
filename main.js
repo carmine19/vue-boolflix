@@ -9,6 +9,7 @@ var app = new Vue ({
         grandezza_img:'w342',
         ricerca: false,
         load: false,
+        scrolled: false,
     },
     methods: {
 
@@ -83,7 +84,18 @@ var app = new Vue ({
                 vid.autoplay = true
                 vid.load();
             }
+        },
 
+        isMobile() {
+            if( screen.width <= 766 ) {
+                    return true;
+                }else {
+                    return false;
+                }
+            },
+
+        handleScroll () {
+            this.scrolled = window.scrollY > 0;
         }
 
     },
@@ -91,7 +103,12 @@ var app = new Vue ({
         this.load = true
         this.film_base()
         this.tronco_stringa(str, num)
+        this.isMobile()
     },
+
+    created () {
+        window.addEventListener('scroll', this.handleScroll);
+    }
 
 });
 

@@ -28,6 +28,11 @@ p {
     color: darkgoldenrod;
 }
 
+.scroll-color {
+     background-color: rgb(20, 20, 20);
+    transition: 0.5s;
+}
+
 body{
     background: #000;
     color: white;
@@ -41,10 +46,10 @@ header .container-menu {
     color: white;
     padding: 10px 50px;
     background-image: linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0));
-    background-color: rgb(20, 20, 20);
     position: fixed;
     width: 100%;
     z-index: 1;
+    transition: 0.5s;
 }
 
 header .container-menu .menu-left {
@@ -261,6 +266,49 @@ video.bgvid {
 
 video {
     display: block;
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 767px) {
+
+     header .container-menu .menu-left .box-menu {
+          display: none;
+      }
+
+     main #card {
+        padding: 50px;
+    }
+
+     header .container-menu .menu-right .box-profile {
+         display: none;
+     }
+
+     header .container-menu {
+         display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+     }
+
+     main #hero .jumbotron .container img {
+    width: 100%;
+    }
+
+     main #hero .jumbotron {
+    background: url("img/hero2.png");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 600px;
+    padding-top: 150px;
+}
+
+
+
 }
 
 
